@@ -16,17 +16,15 @@ setup(
     license="MIT",
     author="manyu",
     packages=find_packages(
-        include=['pandas_data_analytics', 'pandas_data_analytics.*']),
+        include=['src', 'src.*']),
     install_requires=[
         "numpy==1.19.3",
-        "pandas_data_analytics",
         "toml",
         "pandas",
         "seaborn",
         "py-linq",
         "pdfplumber",
         "openpyxl",
-        "pyodbc",
         "qtconsole",
         "jupyter",
         "jupyter-contrib-nbextensions",
