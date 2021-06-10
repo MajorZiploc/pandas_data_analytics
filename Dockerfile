@@ -11,9 +11,9 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then groupmod --g
 
 RUN pip3.8 install --upgrade pip
 
-RUN mkdir -p /workspaces/.venvs/
-RUN python3.8 -m venv /workspaces/.venvs/pandas_data_analytics
-RUN . /workspaces/.venvs/pandas_data_analytics/bin/activate
+RUN mkdir -p /workspace/.venvs/
+RUN python3.8 -m venv /workspace/.venvs/pandas_data_analytics
+RUN . /workspace/.venvs/pandas_data_analytics/bin/activate
 
 COPY setup.py /tmp/
 RUN pip3.8 install -e /tmp/
