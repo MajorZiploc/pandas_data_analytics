@@ -9,15 +9,6 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then groupmod --gid $USER_GID vscode && usermod --uid $USER_UID --gid $USER_GID vscode; fi
 
-RUN pip3.8 install --upgrade pip
-
-RUN mkdir -p /workspace/.venvs/
-RUN python3.8 -m venv /workspace/.venvs/pandas_data_analytics
-RUN . /workspace/.venvs/pandas_data_analytics/bin/activate
-
-COPY setup.py /tmp/
-RUN pip3.8 install -e /tmp/
-
 # [Option] Install Node.js
 # ARG INSTALL_NODE="true"
 # ARG NODE_VERSION="lts/*"
