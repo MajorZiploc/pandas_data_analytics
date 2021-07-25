@@ -87,6 +87,9 @@ def main():
      'name_link-href',
      'generation-href'
      ], axis=1)
+  df.columns = df.columns.str.replace(' ', '_', regex=True)
+  df.sort_values(by="national_no", inplace=True)
+  df.reset_index(inplace=True)
   pd.set_option('display.max_rows', df.shape[0] + 1)
   pd.set_option('display.max_columns', 175)
 
@@ -159,6 +162,7 @@ def main():
     'moves_learnt_by_evolution'
   ]
   for f in moves:
+    movesdf[f] = movesdf[f].astype(str)
     ldf = parse_moves(movesdf, f)
     # to have move data in columns
     # movesdf = pd.concat([movesdf,ldf],axis=1)

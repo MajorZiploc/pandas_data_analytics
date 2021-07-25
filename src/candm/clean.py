@@ -24,6 +24,5 @@ def brand_mapper(row):
     row['brand'] = matching_brand
   return row
 
-
 df: pd.DataFrame = df.apply(brand_mapper, axis=1)
 df.to_csv(config['file_locations']['clean'], index=False)
