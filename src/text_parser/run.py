@@ -5,7 +5,7 @@ import os
 import src.utils as u
 from pandas_data_analytics.text_parser.parser import Parser
 import re
-import pandas_data_analytics.text_parser.utils as tu
+import src.text_parser.utils as tu
 import time
 start_time = time.time()
 
