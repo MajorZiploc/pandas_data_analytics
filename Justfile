@@ -19,3 +19,6 @@ first-time-initialize:
   just start-venv;
   just install-pip-deps;
 
+format:
+  autopep8 . && echo "Projected Formated!" || { echo "Failed to format project!"; exit 1; }
+
