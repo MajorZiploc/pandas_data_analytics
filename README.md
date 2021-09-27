@@ -11,45 +11,35 @@ Some are from kaggle and the config.toml of most of the projects will mention th
 Some of the data is personally scrapped using webscrapper.io. See my web_scraper_io_scripts repo for how to scrap this
 data yourself.
 
-# To build project:
+# Dependencies:
+- pip
+- python v3.8
 
-requires:
-- pip or pipenv
-- python 3.8
+# Development Dependencies
+- just (command runner) v0.10.0
 
-## In project root (All of these package manager commands):
+# Development Tools:
+- vscode
+- vscode plugins
+  - almenon.arepl
+  - ms-python.python
+  - ms-toolsai.jupyter
+  - ms-python.vscode-pylance
 
-## With pip
-### install wheel with pip - still unsure how to get wheel message during install to go away
-pip install wheel
-### To Create a new virtual environment for this project
-> python -m venv ~/.virtualenvs/pandas_data_analytics
+# Project setup and use
+View the Justfile for bash commands. If you have just installed, then you can run the commands from bash with:
 
-### startup
-> source $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate
+> just <command>
 
-### install dependencies
-> pip install -e .
-
-### tear down
-> deactivate
-
-## With pipenv
-### startup
-> pipenv shell
-### install dependencies
-> pipenv install -e .
-
-### tear down
-> deactivate
-
+Else you will need to copy the commands into bash
 
 ## Run some code
-> python <filename>
+Make sure you are in the virtual environment and have the pip dependencies installed
+
+> python <./path/to/file>
 
 setup.py with the follow line of code is required for references project files in other project files for import statements
 packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.*']),
-
 
 # Interactive qtconsole shell
 > $ jupyter qtconsole
