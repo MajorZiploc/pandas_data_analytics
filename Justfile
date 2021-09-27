@@ -28,6 +28,6 @@ start-container:
 stop-container:
   docker-compose -f .devcontainer/docker-compose.yaml stop;
 
-connect-to-container CONTAINER_NAME='devcontainer_app_1':
+connect-to-container CONTAINER_NAME='devcontainer_pandas_data_analytics_app_1':
   docker exec -it "{{CONTAINER_NAME}}" /bin/bash;
 
