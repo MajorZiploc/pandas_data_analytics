@@ -29,7 +29,7 @@ data yourself.
 # Project setup and use
 View the Justfile for bash commands. If you have just installed, then you can run the commands from bash with:
 
-> just <command>
+> just {command}
 
 Else you will need to copy the commands into bash
 
@@ -44,7 +44,7 @@ packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.
 # Interactive qtconsole shell
 > $ jupyter qtconsole
 ## loading a python file into the interactive
->> in qtconsole ---> %run <path/to/pythonfile>
+> in qtconsole ---> %run <path/to/pythonfile>
 
 # Cool Packages
 ## Data Science
@@ -63,7 +63,7 @@ packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.
   </tr>
   <tr>
     <td>sklearn</td>
-    <td>TODO</td>
+    <td>machine learning models</td>
   </tr>
   <tr>
     <td>scikit-learn</td>
@@ -75,15 +75,15 @@ packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.
   </tr>
   <tr>
     <td>skrebate</td>
-    <td> sklearn helper</td>
+    <td>sklearn helper</td>
   </tr>
   <tr>
-    <td>numpy==1.19.3</td>
-    <td>TODO</td>
+    <td>numpy</td>
+    <td>math lib</td>
   </tr>
   <tr>
     <td>scipy</td>
-    <td>TODO</td>
+    <td>math lib</td>
   </tr>
   <tr>
     <td>xgboost==1.1.0</td>
@@ -155,18 +155,18 @@ packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.
   </tr>
   <tr>
     <td>jupyter</td>
-    <td>TODO</td>
+    <td>interactive data science</td>
   </tr>
   <tr>
     <td>jupyter-contrib-nbextensions</td>
-    <td>TODO</td>
+    <td>plugin support for jupyter</td>
   </tr>
   <tr>
     <td>qtconsole</td>
-    <td>TODO</td>
+    <td>python interactive</td>
   </tr>
   <tr>
     <td>pyqt5</td>
-    <td>TODO</td>
+    <td>for qtconsole</td>
   </tr>
 </table>
