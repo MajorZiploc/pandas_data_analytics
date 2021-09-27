@@ -22,3 +22,12 @@ first-time-initialize:
 format:
   autopep8 . && echo "Projected Formated!" || { echo "Failed to format project!"; exit 1; }
 
+start-container:
+  docker-compose -f .devcontainer/docker-compose.yaml up -d;
+
+stop-container:
+  docker-compose -f .devcontainer/docker-compose.yaml stop;
+
+connect-to-container CONTAINER_NAME='devcontainer_app_1':
+  docker exec -it "{{CONTAINER_NAME}}" /bin/bash;
+
