@@ -3,7 +3,7 @@ services:
   app:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.app
       args:
         # [Choice] Python version: 3, 3.8, 3.7, 3.6
         VARIANT: 3.8
@@ -11,7 +11,7 @@ services:
         # INSTALL_NODE: "true"
         # NODE_VERSION: "lts/*"
     volumes:
-      - .:/workspace:cached
+      - ..:/workspace:cached
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
   
