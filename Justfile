@@ -3,8 +3,11 @@
 create-venv:
   python -m venv ~/.virtualenvs/pandas_data_analytics;
  
+start-venv-windows:
+  . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+
 start-venv:
-  source $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+  . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
 
 stop-venv:
   deactivate;
