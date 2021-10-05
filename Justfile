@@ -15,11 +15,17 @@ stop-venv:
 install-pip-deps:
   pip install wheel; pip install -e .;
 
+first-time-initialize-windows:
+  just first-time-initialize-generic 'win';
+
 first-time-initialize:
+  just first-time-initialize-generic
+
+first-time-initialize-generic OS='':
   #!/usr/bin/env bash
   set -euxo pipefail
   just create-venv;
-  just start-venv;
+  [[ '{{OS}}' = 'win' ]] && { just start-venv; }
   just install-pip-deps;
 
 format:
