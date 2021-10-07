@@ -4,7 +4,7 @@
 {
 	"name": "Pandas Data Analytics",
 	"dockerComposeFile": "docker-compose.yaml",
-	"service": "app",
+	"service": "pandas_data_analytics_app",
 	"workspaceFolder": "/workspace",
 
 	// Set *default* container specific settings.json values on container create.

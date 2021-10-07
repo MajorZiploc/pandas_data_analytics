@@ -26,6 +26,17 @@ data yourself.
   - ms-toolsai.jupyter
   - ms-python.vscode-pylance
 
+# First time setup
+
+> just first-time-initialize;
+> . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
+
+OR
+
+for windows:
+> just first-time-initialize-windows;
+> . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+
 # Project setup and use
 View the Justfile for bash commands. If you have just installed, then you can run the commands from bash with:
 
