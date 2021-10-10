@@ -2,12 +2,6 @@
 
 create-venv:
   python -m venv ~/.virtualenvs/pandas_data_analytics;
- 
-start-venv-windows:
-  . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
-
-start-venv:
-  . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
 
 stop-venv:
   deactivate;
@@ -25,7 +19,11 @@ first-time-initialize-generic OS='':
   #!/usr/bin/env bash
   set -euxo pipefail
   just create-venv;
-  [[ '{{OS}}' = 'win' ]] && { just start-venv; }
+  if [[ '{{OS}}' = 'win' ]]; then
+    . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+  else
+    . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
+  fi
   just install-pip-deps;
 
 format:
