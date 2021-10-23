@@ -18,16 +18,12 @@ setup(
     packages=find_packages(
         include=['src', 'src.*']),
     install_requires=[
-        "numpy==1.19.3",
         "toml",
         "pandas",
         "seaborn",
         "py-linq",
         "pdfplumber",
         "openpyxl",
-        "qtconsole",
-        "jupyter",
-        "jupyter-contrib-nbextensions",
         "autopep8"
     ],
     long_description=long_description,

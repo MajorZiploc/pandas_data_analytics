@@ -1,31 +1,26 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/javascript-node-mongo
-// Update the VARIANT arg in docker-compose.yml to pick a Node.js version: 10, 12, 14 
+// Update the VARIANT arg in docker-compose.yml to pick a Node.js version: 10, 12, 14
 {
-	"name": "Pandas Data Analytics",
-	"dockerComposeFile": "docker-compose.yaml",
-	"service": "pandas_data_analytics_app",
-	"workspaceFolder": "/workspace",
+  "name": "Pandas Data Analytics",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "pandas_data_analytics_app",
+  "workspaceFolder": "/workspace",
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
-	},
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"almenon.arepl",
-		"ms-python.python",
-		"ms-toolsai.jupyter",
-		"ms-python.vscode-pylance"
-	],
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": ["almenon.arepl", "ms-python.python", "ms-toolsai.jupyter", "ms-python.vscode-pylance"],
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [3000, 27017],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [3000, 27017],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "mkdir -p /usr/.venv/pandas_data_analytics && python3.8 -m venv /usr/.venv/pandas_data_analytics && . /usr/.venv/pandas_data_analytics/bin/activate && pip install --upgrade pip && pip install wheel  && pip install -e .",
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "pip install --upgrade pip && pip install wheel  && pip install -e ."
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "node"
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  // "remoteUser": "node"
 }
