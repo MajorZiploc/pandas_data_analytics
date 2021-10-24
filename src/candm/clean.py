@@ -8,7 +8,7 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw']
-df = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc) # type: ignore
 
 all_brands = df['brand'].unique()
 real_brands = Enumerable(list(filter(lambda b: b != 'learn more', all_brands)))

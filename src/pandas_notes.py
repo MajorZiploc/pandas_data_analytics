@@ -70,13 +70,13 @@
 # memory reduction step
 # only read the columns you need from a csv
 # cols = ['a', 'b']
-# df = pd.read_csv('path/to/csv.csv', usecols=cols)
+# df: pd.DataFrame = pd.read_csv('path/to/csv.csv', usecols=cols) # type: ignore
 
 # memory reduction step
 # specify categories up front
 # cols = ['a', 'b']
 # dtypes = {'a: 'category'}
-# df = pd.read_csv('path/to/csv.csv', usecols=cols, dtype=dtypes)
+# df: pd.DataFrame = pd.read_csv('path/to/csv.csv', usecols=cols, dtype=dtypes) # type: ignore
 
 # show memory usage of df
 # df.info(memory_usage='deep')
@@ -92,7 +92,7 @@
 # pd.concat((pd.read_csv(file) for file in files), axis='columns')
 
 # read data from clipboard
-# df = pd.read_clipboard()
+# df: pd.DataFrame = pd.read_clipboard() # type: ignore
 
 # split a dataframe into 2 random subsets
 # df1 = df.sample(frac=0.75, random_state=1234)

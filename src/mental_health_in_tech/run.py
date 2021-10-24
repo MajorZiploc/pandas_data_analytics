@@ -37,7 +37,7 @@ GROUP BY SurveyID
 for r in rs:
   print(r)
 
-df = pd.read_sql_query(query, con)
+df: pd.DataFrame = pd.read_sql_query(query, con) # type: ignore
 
 # Apply the default theme
 sns.set_theme()
