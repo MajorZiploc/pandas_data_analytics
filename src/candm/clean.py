@@ -8,7 +8,7 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw']
-df: pd.DataFrame = pd.read_csv(csv_loc) # type: ignore
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 
 all_brands = df['brand'].unique()
 real_brands = Enumerable(list(filter(lambda b: b != 'learn more', all_brands)))
@@ -23,6 +23,7 @@ def brand_mapper(row):
         lambda b: b.lower() in row['listing_link'].lower())
     row['brand'] = matching_brand
   return row
+
 
 df: pd.DataFrame = df.apply(brand_mapper, axis=1)
 df.to_csv(config['file_locations']['clean'], index=False)
