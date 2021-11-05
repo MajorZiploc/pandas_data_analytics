@@ -13,7 +13,7 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['data']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.drop('should_delete', axis=1, inplace=True)
 df = df.convert_dtypes()
 df.date = pd.to_datetime(df.date)
@@ -36,7 +36,12 @@ weights = Enumerable(
                 c,
                 re.I)).to_list()
 # exps = Enumerable(df.columns).where(lambda c: re.match('.*_exp',c,re.I)).to_list()
-mdf: pd.DataFrame = pd.melt(df, id_vars=['date'], value_vars=weights, value_name='lbs', var_name='weight_category')
+mdf: pd.DataFrame = pd.melt(
+    df,
+    id_vars=['date'],
+    value_vars=weights,
+    value_name='lbs',
+    var_name='weight_category')  # type: ignore
 mdf.dropna(inplace=True)
 mdf['date_range'] = pd.cut(mdf.date, date_bins)
 mdf = mdf.convert_dtypes()
@@ -49,7 +54,7 @@ pd.set_option('display.max_rows', mdf.shape[0] + 1)
 # pd.set_option('display.max_columns', mdf.shape[1]+1)
 
 # diffdf = recentdf.iloc[-1] - recentdf.iloc[0]
-pdf: pd.DataFrame = mdf
+pdf: pd.DataFrame = mdf  # type: ignore
 ps = Enumerable([
   lambda: pdf.columns,
   lambda: pdf.dtypes,
@@ -64,7 +69,7 @@ ps = Enumerable([
 u.foreach(lambda f: print(f()), ps)
 
 # write out monthly summaries of stats
-# monthly_summaries_df: pd.DataFrame = pdf.groupby(by='date_range').agg(['mean', 'std', 'min', 'max']).unstack().reset_index()
+# monthly_summaries_df: pd.DataFrame = pdf.groupby(by='date_range').agg(['mean', 'std', 'min', 'max']).unstack().reset_index() # type: ignore
 # monthly_summaries_df.columns = monthly_summaries_df.columns.astype(str)
 # monthly_summaries_df.rename(columns={'level_0':'metric', 'level_1':'stat', '0': 'num'}, inplace=True)
 # monthly_summaries_df.to_csv(config['file_locations']['monthly_summaries'], index=False)

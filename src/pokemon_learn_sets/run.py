@@ -1,13 +1,10 @@
 from py_linq import Enumerable
 import json
-import numpy as np
 import os
 import pandas as pd
 import src.utils as u
 import re
-import seaborn as sns
 import toml
-import math
 
 
 def main():
@@ -80,13 +77,13 @@ def main():
   config = toml.load(os.path.join(this_dir, 'config.toml'))
   u.set_full_paths(config, this_dir)
   csv_loc = config['file_locations']['data']
-  df: pd.DataFrame = pd.read_csv(csv_loc)
-  df = df.drop(
+  df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
+  df: pd.DataFrame = df.drop(
     ['web-scraper-order',
      'web-scraper-start-url',
      'name_link-href',
      'generation-href'
-     ], axis=1)
+     ], axis=1)  # type: ignore
   df.columns = df.columns.str.replace(' ', '_', regex=True)
   df.sort_values(by="national_no", inplace=True)
   df.reset_index(inplace=True)
@@ -94,8 +91,8 @@ def main():
   pd.set_option('display.max_columns', 175)
 
   # name field is unique per pokemon
-  # movesdf: pd.DataFrame = df[['name', 'moves_learnt_by_level_up', 'generation']].dropna()
-  movesdf: pd.DataFrame = df.drop(['name_link'], axis=1)
+  # movesdf: pd.DataFrame = df[['name', 'moves_learnt_by_level_up', 'generation']].dropna() # type: ignore
+  movesdf: pd.DataFrame = df.drop(['name_link'], axis=1)  # type: ignore
   types = [
       'ground',
       'electric',
@@ -162,7 +159,7 @@ def main():
     'moves_learnt_by_evolution'
   ]
   for f in moves:
-    movesdf[f] = movesdf[f].astype(str)
+    movesdf[f] = movesdf[f].astype(str)  # type: ignore
     ldf = parse_moves(movesdf, f)
     # to have move data in columns
     # movesdf = pd.concat([movesdf,ldf],axis=1)
@@ -170,17 +167,17 @@ def main():
     ldf.columns = ldf.columns\
         .str.replace(f, '', regex=True)\
         .str.replace('_', '', regex=True)
-    movesdf[f'{f}_json'] = ldf.to_json(orient='records', lines=True).splitlines()
+    movesdf[f'{f}_json'] = ldf.to_json(orient='records', lines=True).splitlines()  # type: ignore
     # print(f)
     # print(movesdf[f'{f}_json'].tolist()[0:10])
 
   csv_move_df = implode_move_sets(movesdf, moves)
   # print(type(csv_move_df))
-  print(csv_move_df.columns)
-  print(len(csv_move_df))
+  print(csv_move_df.columns)  # type: ignore
+  print(len(csv_move_df))  # type: ignore
   # print(csv_move_df.sample(6))
   # csv_move_df.to_csv(config['file_locations']['cleaned_data'], index=False)
-  general_df = df.drop(
+  general_df: pd.DataFrame = df.drop(
     [
       'moves_learnt_by_level_up', 'moves_learnt_by_tm',
       'moves_learnt_by_tr', 'moves_learnt_by_move_tutor',
@@ -188,7 +185,7 @@ def main():
       'moves_learnt_by_transfer', 'moves_learnt_by_evolution'
     ],
     axis=1
-  ).drop_duplicates()
+  ).drop_duplicates()  # type: ignore
   print(len(df))
   print(len(general_df))
   print(general_df.columns)

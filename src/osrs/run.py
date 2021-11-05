@@ -3,9 +3,6 @@ import toml
 import re
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 from py_linq import Enumerable
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -48,7 +45,12 @@ def skill_binner(skill):
       else 'support'
 
 
-mdf: pd.DataFrame = pd.melt(df, id_vars=['character'], value_vars=exps, value_name='exp', var_name='skill')
+mdf: pd.DataFrame = pd.melt(
+  df,
+  id_vars=['character'],
+  value_vars=exps,
+  value_name='exp',
+    var_name='skill')  # type: ignore
 # mdf.rename(columns={'value': 'exp', 'variable': 'skill'}, inplace=True)
 mdf['skill_bin'] = mdf['skill'].apply(skill_binner)
 # mdf['exp'] = mdf['exp'].apply(r)

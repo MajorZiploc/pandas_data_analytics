@@ -12,7 +12,7 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw_el_pollo_loco']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 
 for label in ['fat', 'protein', 'carbs']:

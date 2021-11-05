@@ -25,5 +25,5 @@ def brand_mapper(row):
   return row
 
 
-df: pd.DataFrame = df.apply(brand_mapper, axis=1)
+df: pd.DataFrame = df.apply(brand_mapper, axis=1)  # type: ignore
 df.to_csv(config['file_locations']['clean'], index=False)

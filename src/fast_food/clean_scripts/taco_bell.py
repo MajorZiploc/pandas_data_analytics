@@ -14,7 +14,7 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw_taco_bell']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower().str.replace('\\s+', '', regex=True)
 df.drop(['web-scraper-order', 'web-scraper-start-url', 'category-href'], inplace=True, axis=1)
 

@@ -15,7 +15,7 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['data']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 nums = ['protein', 'carbs', 'fat', 'sat.fat', 'grams', 'calories', 'fiber']
 for c in nums:
