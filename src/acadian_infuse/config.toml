@@ -1,0 +1,2 @@
+file_locations.file_data = "data/file_data.csv"
+data_notes = "data scraped with bash on main branch of acadian-nemt with: { echo 'line_count,word_count,character_count,file_name; gfind_files '.*' '' '' 3 | xargs wc -lwc | egrep -vi ' total' | sort -un | trim | sed -E 's/[[:blank:]]+/,/g'; }"
