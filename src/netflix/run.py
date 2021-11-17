@@ -24,7 +24,6 @@ df.rating = df.rating.astype('category')
 # string nan values become <NA>, still a rep for nan
 pd.set_option('display.max_rows', df.shape[0] + 1)
 
-
 def drop_filler(g):
   l = ['Movies', 'TV Shows', 'TV', 'Shows', 'Series', 'Features']
   if(Enumerable(l).any(lambda e: g.lower() == e.lower())):
@@ -38,7 +37,6 @@ df['duration_bin'] = pd.cut(df[~df.duration.str.contains('season', flags=re.I)]
                             .duration.str.split(' ', expand=True)[0].str.strip().astype('int')  # type: ignore
                             .sort_values(), bins=np.linspace(0, 350, 8))
 
-
 def genre_df_sup():
   genre_df: pd.DataFrame = df[
     ['date_added', 'release_year', 'rating', 'duration', 'year_added']
@@ -48,7 +46,6 @@ def genre_df_sup():
   genre_df.genre = genre_df.genre.astype('category')
   return genre_df
 
-
 def director_df_sup():
   director_df: pd.DataFrame = df[
     ['director', 'date_added', 'release_year', 'rating', 'duration', 'year_added']
@@ -56,7 +53,6 @@ def director_df_sup():
            .str.split(', ')).explode('director')  # type: ignore
   director_df.director = director_df.director.astype('category')
   return director_df
-
 
 def country_df_sup():
   country_df = df[

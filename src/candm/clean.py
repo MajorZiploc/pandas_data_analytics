@@ -16,14 +16,12 @@ real_brands = Enumerable(list(filter(lambda b: b != 'learn more', all_brands)))
 # if brand is learn more, then check the listing_link against the
 # all_brands list and first match, set the real_brand do that match
 
-
 def brand_mapper(row):
   if(row['brand'] == 'learn more'):
     matching_brand = real_brands.first_or_default(
         lambda b: b.lower() in row['listing_link'].lower())
     row['brand'] = matching_brand
   return row
-
 
 df: pd.DataFrame = df.apply(brand_mapper, axis=1)  # type: ignore
 df.to_csv(config['file_locations']['clean'], index=False)

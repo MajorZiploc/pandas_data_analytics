@@ -27,10 +27,8 @@ exps = Enumerable(df.columns).where(lambda c: re.match('.*_exp', c, re.I)).to_li
 # exps = df.filter(regex=(".*_exp"))
 print(exps)
 
-
 # def r(s):
 #     return re.sub('\D+', '', flags=re.I, string=s)
-
 
 # def remove_exp(s):
 #     return re.sub('(.*)_exp$', '\\1', flags=re.I, string=s)

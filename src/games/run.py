@@ -104,10 +104,8 @@ aplot = sns.boxplot(
 #     size='Rank'
 # )
 
-
 def countplot(x, hue, **kwargs):
   sns.countplot(x=x, hue=hue, **kwargs)
-
 
 # g = sns.FacetGrid(df, col="Platform_Bin", hue='Genre')
 # g.map(sns.countplot, 'Year_Bin')

@@ -6,7 +6,6 @@ import src.utils as u
 import re
 import toml
 
-
 def main():
   def view_data(pdf):
     # pdf.style.set_properties(**{'width': '300px'})
