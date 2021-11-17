@@ -15,24 +15,19 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw_delish']
 
-
 def get_thing(s, phrase):
   m = re.search(phrase, s)
   return m.group(1) if m is not None\
       else np.nan
 
-
 def get_sodium(s):
   return get_thing(s, '([,\\d]+) [a-zA-Z\\s]+ sodium')
-
 
 def get_sat_fat(s):
   return get_thing(s, '([,\\d]+) [a-zA-Z\\s]+ saturated fat')
 
-
 def get_trans_fat(s):
   return get_thing(s, '([,\\d]+) [a-zA-Z\\s]+ trans fat')
-
 
 def get_calories(s):
   return get_thing(s, '([,\\d]+) calories')

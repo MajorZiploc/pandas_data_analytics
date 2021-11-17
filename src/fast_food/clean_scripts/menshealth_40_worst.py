@@ -18,42 +18,35 @@ csv_loc = config['file_locations']['raw_mens_health_40_worst']
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 
-
 def get_thing(s, phrase):
   m = re.search(phrase, s)
   return m.group(1) if m is not None\
       else np.nan
-
 
 def get_sodium(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?sodium')
   return m if not pd.isna(m)\
       else get_thing(s, 'sodium[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
 
-
 def get_sat_fat(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?saturated fat')
   return m if not pd.isna(m)\
       else get_thing(s, 'saturated fat[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
-
 
 def get_fat(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?fat')
   return m if not pd.isna(m)\
       else get_thing(s, 'fat \\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
 
-
 def get_calories(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?calories')
   return m if not pd.isna(m)\
       else get_thing(s, 'calories[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
 
-
 def get_sugar(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?sugar')
   return m if not pd.isna(m)\
       else get_thing(s, 'sugar[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
-
 
 def remove_company(s):
   return re.sub('Chili\'s', '', s, flags=re.I) if re.search('Chili\'s', s, re.I)\
@@ -87,7 +80,6 @@ def remove_company(s):
     else re.sub('Burger King', '', s, flags=re.I) if re.search('Burger King', s, re.I)\
     else re.sub('Shake Shack', '', s, flags=re.I) if re.search('Shake Shack', s, re.I)\
     else np.nan
-
 
 def get_company(s):
   return 'Chilis' if re.search('Chili\'s', s, re.I)\

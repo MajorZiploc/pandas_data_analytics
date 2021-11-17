@@ -18,30 +18,25 @@ csv_loc = config['file_locations']['raw_nourish_worst_rest']
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 
-
 def get_thing(s, phrase):
   m = re.search(phrase, s)
   return m.group(1) if m is not None\
       else np.nan
-
 
 def get_sodium(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?sodium')
   return m if not pd.isna(m)\
       else get_thing(s, 'sodium[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
 
-
 def get_fat(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?fat')
   return m if not pd.isna(m)\
       else get_thing(s, 'fat \\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
 
-
 def get_calories(s):
   m = get_thing(s, '(\\d+[\\d,\\.]+)[\\sa-zA-Z]*?calories')
   return m if not pd.isna(m)\
       else get_thing(s, 'calories[\\sa-zA-Z]\\((\\d+[\\d,\\.]+)[\\sa-zA-Z]*?\\)')
-
 
 for (label, fn) in [
   ('calories', get_calories),

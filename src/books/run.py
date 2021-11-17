@@ -24,7 +24,6 @@ book_data: pd.DataFrame = pd.concat((pd.read_csv(file) for file in files), ignor
 # function to parse the product field
 # parse_products : row -> row
 
-
 def parse_products(r):
   m = re.search('(.+)\\((.*)(?:Book|,)(.*?)\\)', r['Products'], re.I)
   if m:

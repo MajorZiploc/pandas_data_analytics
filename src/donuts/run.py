@@ -16,7 +16,6 @@ csv_loc = config['file_locations']['data']
 
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 
-
 def food_binner(s):
   return "pastry" if re.search('donut|eclair|cake', s, re.I) else\
       "drink" if re.search('shake|soda|coke|hot chocolate|cappacino', s, re.I) else\
@@ -25,7 +24,6 @@ def food_binner(s):
       np.nan
 
 # df['food_cat'] = df.name.apply(food_binner)
-
 
 ps = (lambda pdf, field: Enumerable([
   # lambda: pdf.sample(5),

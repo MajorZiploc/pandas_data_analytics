@@ -45,7 +45,6 @@ df['Day'] = df[md1]\
   .str.replace('(.*), $', r'\1', regex=True)\
   .str.split(', ')
 
-
 def time_binner(r):
   sd = r['start_time']
   ed = r['end_time']
@@ -66,7 +65,6 @@ def time_binner(r):
     curr_time += datetime.timedelta(minutes=30)
   r['time_bins'] = time_bins
   return r
-
 
 def to_mil_time(d):
   h = str(d.hour)

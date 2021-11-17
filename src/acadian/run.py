@@ -12,10 +12,8 @@ u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['training_data']
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 
-
 def r(s):
   return re.sub('.*?\\/(.*?)\\/.*?\\.\\w+$', '\\1', flags=re.I, string=s)
-
 
 df['project'] = df['project_and_file'].apply(r)
 df = df[~(df['project'] == 'Search')]

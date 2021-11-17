@@ -1,7 +1,6 @@
 import re
 from py_linq import Enumerable
 
-
 def str_flags_to_regex_flags(str_flags):
   flag_map = {
       "i": re.IGNORECASE,

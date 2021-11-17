@@ -16,7 +16,6 @@ csv_loc = config['file_locations']['clean']
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df['price'] = pd.to_numeric(df['price'].apply(lambda p: re.sub('[$,]', '', p)))
 
-
 def plot():
   bplot = sns.countplot(x='brand', data=df)
   bplot.set_xticklabels(bplot.get_xticklabels(), rotation=10)
@@ -29,7 +28,6 @@ def plot():
   bplot = sns.boxplot(x='brand', y='price', data=df)
   bplot.set_xticklabels(bplot.get_xticklabels(), rotation=10)
   plt.show()
-
 
 def main():
   # Apply the default theme

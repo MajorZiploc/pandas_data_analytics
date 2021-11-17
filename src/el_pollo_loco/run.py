@@ -34,13 +34,11 @@ df.dropna(how='any', inplace=True)
 
 df = df[['food_cat', 'name', 'calories', 'fat', 'protein', 'carbs']]
 
-
 def salad_bin(r):
   food_cat = "salad" if re.search('salad', r['name'], re.I) else\
     r['food_cat']
   r['food_cat'] = food_cat
   return r
-
 
 # df = df.apply(salad_bin, axis=1)
 df['carbs_marco_ratio'] = df.carbs / (df.carbs + df.protein + df.fat)
