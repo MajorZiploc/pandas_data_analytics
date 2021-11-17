@@ -16,7 +16,7 @@ config = toml.load(os.path.join(this_dir, 'data', 'config.toml'))
 conn = pyodbc.connect(config['con_str'])
 
 sql_query = 'SELECT TOP(10) * FROM EDIProvider'
-df: pd.DataFrame = pd.read_sql_query(sql_query, conn)
+df: pd.DataFrame = pd.read_sql_query(sql_query, conn)  # type: ignore
 
 print(df.head())
 print(df.shape)

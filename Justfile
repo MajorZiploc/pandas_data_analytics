@@ -1,4 +1,4 @@
-# vim: set filetype=bash :
+# vim: filetype=bash
 
 create-venv:
   python -m venv ~/.virtualenvs/pandas_data_analytics;

@@ -63,7 +63,7 @@ pd.set_option('display.max_columns', 10000)
 pd.set_option('display.max_colwidth', 200)
 
 # display metrics/data
-pdf: pd.DataFrame = book_data
+pdf: pd.DataFrame = book_data  # type: ignore
 ps = [
   lambda: pdf.sample(5)
   # lambda: pdf.Products.sort_values()

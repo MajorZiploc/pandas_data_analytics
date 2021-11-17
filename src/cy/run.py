@@ -12,8 +12,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 
-df: pd.DataFrame = pd.read_excel(config['file_locations']['data'], sheet_name='Export Worksheet')
-# df: pd.DataFrame = pd.read_csv(config['file_locations']['data_csv'])
+df: pd.DataFrame = pd.read_excel(config['file_locations']['data'], sheet_name='Export Worksheet')  # type: ignore
+# df: pd.DataFrame = pd.read_csv(config['file_locations']['data_csv']) # type: ignore
 df.columns = df.columns.str.strip()
 # df.to_csv('data.csv', index=False)
 # print(df['Academic Period Code'].head(5))

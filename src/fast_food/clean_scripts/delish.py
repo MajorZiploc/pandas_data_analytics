@@ -38,7 +38,7 @@ def get_calories(s):
   return get_thing(s, '([,\\d]+) calories')
 
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 df.drop(['web-scraper-order', 'web-scraper-start-url'], inplace=True, axis=1)
 df['company'] = df.name.str.split(':', expand=True)[0]

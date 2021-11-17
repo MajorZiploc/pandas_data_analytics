@@ -3,8 +3,6 @@ import re
 import toml
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
 import functools as ft
 from py_linq import Enumerable
@@ -14,7 +12,7 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['raw_el_pollo_loco']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df.columns = df.columns.str.lower()
 
 for label in ['fat', 'protein', 'carbs']:

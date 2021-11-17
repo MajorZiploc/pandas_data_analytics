@@ -4,10 +4,8 @@ import toml
 from src import *
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-import functools as ft
 from py_linq import Enumerable
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -15,12 +13,12 @@ config = toml.load(os.path.join(this_dir, 'config.toml'))
 u.set_full_paths(config, this_dir)
 csv_loc = config['file_locations']['data']
 
-df: pd.DataFrame = pd.read_csv(csv_loc)
+df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 # df.dropna(how='any', inplace=True)
 df = df.convert_dtypes()
 df.type = df.type.astype('category')
 df.date_added = pd.to_datetime(df.date_added)
-df['year_added'] = df.date_added.dt.year.astype('Int64').astype('category')
+df['year_added'] = df.date_added.dt.year.astype('Int64').astype('category')  # type: ignore
 df.release_year = df.release_year.astype('category')
 df.rating = df.rating.astype('category')
 # string nan values become <NA>, still a rep for nan
@@ -37,15 +35,15 @@ def drop_filler(g):
 # creates bins for the durations, does not include season info
 # only assigns indices where duration was minute based
 df['duration_bin'] = pd.cut(df[~df.duration.str.contains('season', flags=re.I)]
-                            .duration.str.split(' ', expand=True)[0].str.strip().astype('int')
+                            .duration.str.split(' ', expand=True)[0].str.strip().astype('int')  # type: ignore
                             .sort_values(), bins=np.linspace(0, 350, 8))
 
 
 def genre_df_sup():
   genre_df: pd.DataFrame = df[
     ['date_added', 'release_year', 'rating', 'duration', 'year_added']
-  ].assign(genre=df["listed_in"]
-           .str.split(", ")).explode('genre')
+  ].assign(genre=df["listed_in"]  # type: ignore
+           .str.split(", ")).explode('genre')  # type: ignore
   genre_df.genre = genre_df.genre.apply(drop_filler).str.strip()
   genre_df.genre = genre_df.genre.astype('category')
   return genre_df
@@ -54,8 +52,8 @@ def genre_df_sup():
 def director_df_sup():
   director_df: pd.DataFrame = df[
     ['director', 'date_added', 'release_year', 'rating', 'duration', 'year_added']
-  ].assign(director=df['director']
-           .str.split(', ')).explode('director')
+  ].assign(director=df['director']  # type: ignore
+           .str.split(', ')).explode('director')  # type: ignore
   director_df.director = director_df.director.astype('category')
   return director_df
 
