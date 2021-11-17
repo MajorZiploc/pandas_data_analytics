@@ -57,6 +57,9 @@ packages=find_packages(include=['pandas_data_analytics', 'pandas_data_analytics.
 ## loading a python file into the interactive
 > in qtconsole ---> %run <path/to/pythonfile>
 
+# Formatting rules for autopep8
+https://pep8.readthedocs.io/en/latest/intro.html#configuration
+
 # Cool Packages
 ## Data Science
 <table style="width:100%">
