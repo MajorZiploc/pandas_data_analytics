@@ -29,11 +29,10 @@ def file_type_binner(file_name):
       '\\.(ts|js|m)$', file_name)\
       else 'resource'
 
-def file_ext_binner(file_name):
-  return re.sub('.*/(.*?)', '\\1', re.sub('.*\\.(.*?)', '\\1', string=file_name))
-
 df['file_type'] = df['file_name'].apply(file_type_binner)
-df['file_ext'] = df['file_name'].apply(file_ext_binner)
+df['file_ext'] = df['file_name']\
+  .str.replace('.*\\.(.*?)', r'\1', regex=True)\
+  .str.replace('.*/(.*?)', '\\1', regex=True)
 
 df.to_csv(config['file_locations']['output_data'], index=False)
 
