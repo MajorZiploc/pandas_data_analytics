@@ -12,8 +12,8 @@ csv_loc = config['file_locations']['file_changes_raw']
 df: pd.DataFrame = pd.read_csv(csv_loc)  # type: ignore
 df = df[df['lines_added'] != '-']
 df = df[df['lines_deleted'] != '-']
-df['lines_deleted'] = pd.to_numeric(df['lines_deleted'])
-df['lines_added'] = pd.to_numeric(df['lines_added'])
+df['lines_deleted'] = pd.to_numeric(df['lines_deleted'], errors='coerce')
+df['lines_added'] = pd.to_numeric(df['lines_added'], errors='coerce')
 df.convert_dtypes()
 print(df.dtypes)
 

@@ -1,5 +1,7 @@
 file_locations.file_data = "data/file_data.csv"
+data_notes.file_data = "data scraped with bash on main branch of acadian-nemt with: ./git_queries.sh get_current_file_stats function"
 file_locations.output_data = "data/output_data.csv"
-data_notes = "data scraped with bash on main branch of acadian-nemt with: { echo 'line_count,word_count,character_count,file_name'; gfind_files '.*' '' '' 3 | xargs wc -lwc | egrep -vi ' total' | sort -n | trim | sed -E 's/[[:blank:]]+/,/g'; }"
+
 file_locations.file_changes_raw = "data/file_changes_raw.csv"
+data_notes.file_changes = "data scraped with bash on main branch of acadian-nemt with: ./git_queries.sh get_file_changes function"
 file_locations.file_changes_cleaned= "data/file_changes_cleaned.csv"
