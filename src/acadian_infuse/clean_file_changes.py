@@ -19,5 +19,7 @@ df.convert_dtypes()
 summed_gdf = df.groupby(['author', 'file_name']).agg('sum')
 summed_df: pd.DataFrame = summed_gdf.unstack().unstack().reset_index()  # type: ignore
 summed_df.rename(columns={'level_0': 'line_action', 0: 'line_count'}, inplace=True)
+# if an author didnt contribute to a file, then dont show an entry for them on that file
+summed_df.dropna(subset=['line_count'], inplace=True)
 
 summed_df.to_csv(config['file_locations']['file_changes_cleaned'], index=False)
