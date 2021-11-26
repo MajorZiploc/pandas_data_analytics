@@ -2,6 +2,8 @@ file_locations.file_data = "data/file_data.csv"
 data_notes.file_data = "data scraped with bash on main branch of acadian-nemt with: ./git_queries.sh get_current_file_stats function"
 file_locations.output_data = "data/output_data.csv"
 
-file_locations.file_changes_raw = "data/file_changes_raw.csv"
+file_locations.file_changes_raw = "data/infuse/raw/acadian_nemt.csv"
 data_notes.file_changes = "data scraped with bash on main branch of acadian-nemt with: ./git_queries.sh get_file_changes function"
-file_locations.file_changes_cleaned= "data/file_changes_cleaned.csv"
+file_locations.file_changes_cleaned= "data/infuse/cleaned/acadian_nemt.csv"
+
+file_locations.case_study= "data/infuse/cleaned/acadian_nemt.csv"
