@@ -7,6 +7,11 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# resizing figures to make them larger
+from matplotlib import rcParams
+# sns.set(rc={'figure.figsize':(11.7,8.27)})
+rcParams['figure.figsize'] = 11.7, 8.27
+
 this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
 
@@ -37,20 +42,24 @@ df['file_ext'] = df['file_name']\
 pd.set_option('display.max_rows', df.shape[0] + 1)
 pd.set_option('display.max_columns', 10000)
 pd.set_option('display.max_colwidth', 200)
+pd.set_option('display.width', 500)
+pd.set_option("expand_frame_repr", True)
+#pd.set_option("large_repr", "truncate")
 
 # print(df.sample(5))
+print(df)
 
 print(df['file_type'].value_counts())
-print(df.groupby('file_type').agg(['mean']))
+df.drop(columns=['net_line_changes'], inplace=True)
+print(df.groupby(['author', 'file_type']).agg(['count', 'mean', 'sum']))
 # print(df[df['file_type'] == 'config'])
 
 # Limits data for charting purposes
 df = df[~(df['lines_added'] > upper_line_count_limit)]
-print(df)
+# print(df)
 # sns.set_theme()
 
-# aplot = sns.countplot(y='line_count_cat', data=df, hue='file_type')
+#aplot = sns.countplot(y='line_count_cat', data=df, hue='file_type')
+#aplot = sns.countplot(y='author', hue="file_type", data=df)
+#aplot = sns.boxplot(y='file_type', x='lines_deleted', hue="author", data=df)
 # plt.show()
-
-aplot = sns.boxplot(y='file_type', x='lines_added', hue="author", data=df)
-plt.show()
