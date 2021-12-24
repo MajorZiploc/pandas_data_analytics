@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # resizing figures to make them larger
 from matplotlib import rcParams
 # sns.set(rc={'figure.figsize':(11.7,8.27)})
-rcParams['figure.figsize'] = 11.7,8.27
+rcParams['figure.figsize'] = 11.7, 8.27
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
