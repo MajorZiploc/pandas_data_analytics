@@ -13,10 +13,7 @@ data yourself.
 
 # Dependencies:
 - pip
-- python v3.8
-
-# Development Dependencies
-- just (command runner) v0.10.0
+- python v3.9.9
 
 # Development Tools:
 - vscode
@@ -26,26 +23,27 @@ data yourself.
   - ms-toolsai.jupyter
   - ms-python.vscode-pylance
 
+# Source helper functions
+
+From the root of the project
+> . ./just.bash
+
 # First time setup
 
-> just first-time-initialize;
-> . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
+> just_first_time_initialize;
 
 OR
 
 for windows:
-> just first-time-initialize-windows;
-> . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+> just_first_time_initialize_windows;
 
 # Project setup and use
-View the Justfile for bash commands. If you have just installed, then you can run the commands from bash with:
-
-> just {command}
-
-Else you will need to copy the commands into bash
+View the ./just.bash for bash commands.
 
 ## Run some code
 Make sure you are in the virtual environment and have the pip dependencies installed
+> just_venv_connect
+> just_venv_install_pip_deps
 
 > python <./path/to/file>
 
