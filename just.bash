@@ -1,11 +1,11 @@
-export PANDAS_DATA_ANALYTICS_PROJECT_ROOT="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+export JUST_PROJECT_ROOT="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 function just_venv_create {
   python -m venv ~/.virtualenvs/pandas_data_analytics;
 }
 
 function just_venv_install_pip_deps {
-  pip install wheel; pip install -e "$PANDAS_DATA_ANALYTICS_PROJECT_ROOT";
+  pip install wheel; pip install -e "$JUST_PROJECT_ROOT";
 }
 
 function just_first_time_initialize_windows {
@@ -40,15 +40,15 @@ function just_first_time_initialize_generic {
 }
 
 function just_format {
-  autopep8 "$PANDAS_DATA_ANALYTICS_PROJECT_ROOT" && echo "Projected Formated!" || { echo "Failed to format project!"; exit 1; }
+  autopep8 "$JUST_PROJECT_ROOT" && echo "Projected Formated!" || { echo "Failed to format project!"; exit 1; }
 }
 
 function just_docker_container_start {
-  docker-compose -f "${PANDAS_DATA_ANALYTICS_PROJECT_ROOT}/.devcontainer/docker-compose.yaml" up -d;
+  docker-compose -f "${JUST_PROJECT_ROOT}/.devcontainer/docker-compose.yaml" up -d;
 }
 
 function just_docker_container_stop {
-  docker-compose -f "${PANDAS_DATA_ANALYTICS_PROJECT_ROOT}.devcontainer/docker-compose.yaml" stop;
+  docker-compose -f "${JUST_PROJECT_ROOT}.devcontainer/docker-compose.yaml" stop;
 }
 
 function just_docker_container_connect {
