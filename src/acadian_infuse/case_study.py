@@ -18,7 +18,7 @@ def file_type_binner(file_name):
       else 'script' if re.search(
       '(\\.(bat|(ba)?sh|ps1)$|([jJ]ustfile)$)', file_name)\
       else 'general_code' if re.search(
-      '\\.([tjcfr]sx?|(cs)?html|vb|py|m)$', file_name)\
+      '\\.([tjcfr]sx?|(cs)?html|vb|py|m|graphql)$', file_name)\
       else 'documentation' if re.search(
       '\\.(md|rst)$', file_name)\
       else 'resource'
