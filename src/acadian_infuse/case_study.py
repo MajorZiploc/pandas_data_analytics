@@ -48,9 +48,9 @@ def main():
   #pd.set_option("large_repr", "truncate")
 
   # print(df.sample(5))
-  print(df)
+  #print(df)
 
-  print(df['file_type'].value_counts())
+  #print(df['file_type'].value_counts())
   df.drop(columns=['net_line_changes'], inplace=True)
   print(df.groupby(['author', 'file_type']).agg(['count', 'mean', 'sum']))
   # print(df[df['file_type'] == 'config'])
