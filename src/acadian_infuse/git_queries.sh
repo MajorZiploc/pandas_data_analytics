@@ -15,7 +15,7 @@ git --no-pager shortlog -sn --all --after "10/1/21" --before "11/31/21"
 
 # get file changes by each author per file, per commit. file will occur multi times. need to write python pandas code to agg the data on file name
 # filter out lines that contain more that 3 commas (may removes files with spaces for the stats, the 2 to_comma subs should allow for finding files with spaces, making the perl command just an extra redundant check for commas)
-function get_file_changes () { to_comma='s/[[:blank:]]+/,/';echo "lines_added,lines_deleted,file_name,author"; authors=(`git --no-pager shortlog -sn --all | col_n 2 | xargs`);for author in ${authors[@]}; do git --no-pager log --all --author="$author" --format=tformat: --numstat --after "11/12/21" --before "11/20/21" | egrep -v "=>" | sed -E "$to_comma;$to_comma;s/(.*)/\1,$author/" | perl -F'' -nle 'print if scalar(grep(/,/,@F)) == 3'; done; }
+function get_file_changes () { to_comma='s/[[:blank:]]+/,/';echo "lines_added,lines_deleted,file_name,author"; authors=(`git --no-pager shortlog -sn --all | col_n 2 | xargs`);for author in ${authors[@]}; do git --no-pager log --all --author="$author" --format=tformat: --numstat --after "01/01/22" --before "01/07/22" | egrep -v "=>" | sed -E "$to_comma;$to_comma;s/(.*)/\1,$author/" | perl -F'' -nle 'print if scalar(grep(/,/,@F)) == 3'; done; }
 
 function run_get_files_changes_on_dirs_in_dir () { raw_write_loc="$HOME/projects/pandas_data_analytics/src/acadian_infuse/data/personal_projects/raw"; find . -mindepth 1 -maxdepth 1 -type d -print0 | while read -d $'\0' proj; do cd "$proj"; get_file_changes | tee "$raw_write_loc/$(echo "$proj" | sed -E 's/^\.//')"; cd ..; done; }
 

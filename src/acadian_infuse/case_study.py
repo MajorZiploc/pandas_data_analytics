@@ -18,7 +18,7 @@ def file_type_binner(file_name):
       else 'script' if re.search(
       '(\\.(bat|(ba)?sh|ps1)$|([jJ]ustfile)$)', file_name)\
       else 'general_code' if re.search(
-      '\\.([tjcfr]sx?|(cs)?html|vb|py|m)$', file_name)\
+      '\\.([tjcfr]sx?|(cs)?html|vb|py|m|graphql)$', file_name)\
       else 'documentation' if re.search(
       '\\.(md|rst)$', file_name)\
       else 'resource'
@@ -37,8 +37,9 @@ def main():
 
   df['file_type'] = df['file_name'].apply(file_type_binner)
   df['file_ext'] = df['file_name']\
-      .str.replace('.*\\.(.*?)', r'\1', regex=True)\
-      .str.replace('.*/(.*?)', '\\1', regex=True)
+      .str.replace('.*/(.*?)', '\\1', regex=True)\
+      .str.replace('.*/(Dockerfile).*?', '\\1', regex=True)\
+      .str.replace('.*\\.(.*?)', r'\1', regex=True)
 
   pd.set_option('display.max_rows', df.shape[0] + 1)
   pd.set_option('display.max_columns', 10000)
@@ -48,9 +49,9 @@ def main():
   #pd.set_option("large_repr", "truncate")
 
   # print(df.sample(5))
-  print(df)
+  #print(df)
 
-  print(df['file_type'].value_counts())
+  #print(df['file_type'].value_counts())
   df.drop(columns=['net_line_changes'], inplace=True)
   print(df.groupby(['author', 'file_type']).agg(['count', 'mean', 'sum']))
   # print(df[df['file_type'] == 'config'])
