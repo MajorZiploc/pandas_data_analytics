@@ -37,8 +37,9 @@ def main():
 
   df['file_type'] = df['file_name'].apply(file_type_binner)
   df['file_ext'] = df['file_name']\
-      .str.replace('.*\\.(.*?)', r'\1', regex=True)\
-      .str.replace('.*/(.*?)', '\\1', regex=True)
+      .str.replace('.*/(.*?)', '\\1', regex=True)\
+      .str.replace('.*/(Dockerfile).*?', '\\1', regex=True)\
+      .str.replace('.*\\.(.*?)', r'\1', regex=True)
 
   pd.set_option('display.max_rows', df.shape[0] + 1)
   pd.set_option('display.max_columns', 10000)
