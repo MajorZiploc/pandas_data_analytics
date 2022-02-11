@@ -40,7 +40,7 @@ function just_first_time_initialize_generic {
 }
 
 function just_format {
-  autopep8 "$JUST_PROJECT_ROOT" && echo "Projected Formated!" || { echo "Failed to format project!"; exit 1; }
+  autopep8 "$JUST_PROJECT_ROOT" && echo "Projected Formated!" || { echo "Failed to format project!"; return 1; }
 }
 
 function just_docker_container_start {
