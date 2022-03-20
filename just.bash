@@ -57,3 +57,7 @@ function just_docker_container_connect {
   docker exec -it "$container_name" /bin/bash;
 }
 
+function just_clean {
+  rm -rf "$JUST_PROJECT_ROOT/.venv";
+}
+
