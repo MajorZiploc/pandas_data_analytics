@@ -1,11 +1,11 @@
 export JUST_PROJECT_ROOT="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 function just_venv_create {
-  python -m venv ~/.virtualenvs/pandas_data_analytics;
+  python3 -m venv "$JUST_PROJECT_ROOT/.venv";
 }
 
 function just_venv_install_pip_deps {
-  pip install wheel; pip install -e "$JUST_PROJECT_ROOT";
+  pip3 install wheel; pip3 install -e "$JUST_PROJECT_ROOT";
 }
 
 function just_first_time_initialize_windows {
@@ -17,11 +17,11 @@ function just_first_time_initialize {
 }
 
 function just_venv_connect_win {
-  . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+  . $JUST_PROJECT_ROOT/.venv/Scripts/activate;
 }
 
 function just_venv_connect {
-  . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
+  . $JUST_PROJECT_ROOT/.venv/bin/activate;
 }
 
 function just_venv_disconnect {
@@ -32,9 +32,9 @@ function just_first_time_initialize_generic {
   local os="$1";
   just_venv_create;
   if [[ "$os" = "win" ]]; then
-    . $HOME/.virtualenvs/pandas_data_analytics/Scripts/activate;
+    . $JUST_PROJECT_ROOT/.venv/Scripts/activate;
   else
-    . $HOME/.virtualenvs/pandas_data_analytics/bin/activate;
+    . $JUST_PROJECT_ROOT/.venv/bin/activate;
   fi
   just_venv_install_pip_deps;
 }
@@ -55,5 +55,9 @@ function just_docker_container_connect {
   local container_name="$1";
   container_name="${container_name:-"devcontainer_pandas_data_analytics_app_1"}";
   docker exec -it "$container_name" /bin/bash;
+}
+
+function just_clean {
+  rm -rf "$JUST_PROJECT_ROOT/.venv";
 }
 

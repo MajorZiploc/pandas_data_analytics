@@ -75,3 +75,4 @@ Pipfile.lock
 .fake
 .ionide
 .DS_Store
+.venv
