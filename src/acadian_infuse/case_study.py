@@ -23,6 +23,11 @@ def file_type_binner(file_name):
       '\\.(md|rst)$', file_name)\
       else 'resource'
 
+def micro_service_binner(file_name):
+    return re.sub('packages/([^/]+)/.*', r'\1', file_name) if re.search(
+      'packages/([^/]+)/.*', file_name)\
+      else ''
+
 def main():
   this_dir = os.path.dirname(os.path.realpath(__file__))
   config = toml.load(os.path.join(this_dir, 'config.toml'))
@@ -35,6 +40,8 @@ def main():
   # bins = np.linspace(0, upper_line_count_limit, 10)
   # df['line_count_cat'] = pd.cut(df['line_count'], bins=bins)
 
+  df['micro_service'] = df['file_name'].apply(micro_service_binner).str.strip()
+  df = df[~( df['micro_service'].isna() | df['micro_service'] == '' )]
   df['file_type'] = df['file_name'].apply(file_type_binner)
   df['file_ext'] = df['file_name']\
       .str.replace('.*/(.*?)', '\\1', regex=True)\
@@ -48,12 +55,12 @@ def main():
   pd.set_option("expand_frame_repr", True)
   #pd.set_option("large_repr", "truncate")
 
-  # print(df.sample(5))
+  #print(df.sample(5))
   #print(df)
 
   #print(df['file_type'].value_counts())
   df.drop(columns=['net_line_changes'], inplace=True)
-  print(df.groupby(['author', 'file_type']).agg(['count', 'mean', 'sum']))
+  print(df.groupby(['author', 'micro_service', 'file_type']).agg(['count', 'mean', 'sum']))
   # print(df[df['file_type'] == 'config'])
 
   # Limits data for charting purposes
