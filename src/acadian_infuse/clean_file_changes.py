@@ -30,7 +30,7 @@ def main():
   lc_df[['lines_added', 'lines_deleted']] = lc_df['line_count'].str.split(';', expand=True)
   lc_df.drop('line_count', axis=1, inplace=True)
   lc_df.dropna(subset=['lines_added', 'lines_deleted'], inplace=True)
-  lc_df = lc_df[(lc_df['lines_added'] != 'nan') | (lc_df['lines_added'] != 'nan')]
+  lc_df = lc_df[(lc_df['lines_added'] != 'nan') | (lc_df['lines_deleted'] != 'nan')]
 
   for col in ['lines_added', 'lines_deleted']:
     lc_df = lc_df[lc_df[col] != '-']
