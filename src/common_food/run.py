@@ -1,5 +1,4 @@
 import src.utils as u
-import re
 import toml
 from src import *
 import os
@@ -7,8 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-import functools as ft
-from py_linq import Enumerable
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 config = toml.load(os.path.join(this_dir, 'config.toml'))
@@ -25,7 +22,7 @@ df = df.replace(r'^\s*$', np.nan, regex=True)
 # df = df.convert_dtypes()
 
 for c in nums:
-  df[c] = df[c].astype('float')
+  df[c] = df[c].replace('(\\d+)-(\\d+)', '\\2', regex=True).astype('float')
 
 df['cal_per_gram'] = df.calories / df.grams
 
@@ -35,17 +32,17 @@ pd.set_option('display.max_columns', df.shape[1] + 1)
 pd.set_option('display.width', 1000)
 
 pdf = df
-ps = Enumerable([
+ps = [
   # lambda: pdf.sample(5),
   # lambda: pdf.columns,
   # lambda: pdf.dtypes,
   # lambda: pdf[['food', 'cal_per_gram']].sort_values('cal_per_gram'),
   lambda: pdf.category.value_counts(),
-  lambda: pdf.groupby('category').apply(lambda x:\
-                                        x.nlargest(n=5, columns='cal_per_gram'))[['food', 'cal_per_gram']]
+  lambda: pdf.groupby('category').apply(lambda gdf:\
+                                        gdf.nlargest(n=5, columns='cal_per_gram'))[['food', 'cal_per_gram']]
   # lambda: df[df['food'].str.contains("milk", flags=re.I)][['food',
   # 'category']]['category'].value_counts() #.groupby('category').count(),
-])
+]
 # g = df.groupby(['id']).apply(lambda x: x.nlargest(topk,['value'])).reset_index(drop=True)
 
 u.foreach(lambda f: print(f()), ps)
