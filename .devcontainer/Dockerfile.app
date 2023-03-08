@@ -4,10 +4,6 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 
 ENV PYTHONUNBUFFERED 1
 
-# Install just command runner
-COPY ./utils/install-just.sh install-just.sh
-RUN bash ./install-just.sh
-
 # Update args in docker-compose.yaml to set the UID/GID of the "vscode" user.
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
