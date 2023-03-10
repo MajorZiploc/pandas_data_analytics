@@ -44,11 +44,11 @@ function just_format {
 }
 
 function just_docker_container_start {
-  docker-compose -f "${JUST_PROJECT_ROOT}/.devcontainer/docker-compose.yaml" up -d;
+  docker-compose -f "${JUST_PROJECT_ROOT}/docker-compose.yaml" up -d;
 }
 
 function just_docker_container_stop {
-  docker-compose -f "${JUST_PROJECT_ROOT}.devcontainer/docker-compose.yaml" stop;
+  docker-compose -f "${JUST_PROJECT_ROOT}/docker-compose.yaml" stop;
 }
 
 function just_docker_container_connect {
