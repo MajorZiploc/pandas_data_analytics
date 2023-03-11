@@ -17,11 +17,11 @@ function just_first_time_initialize {
 }
 
 function just_venv_connect_win {
-  . $JUST_PROJECT_ROOT/.venv/Scripts/activate;
+  . "$JUST_PROJECT_ROOT/.venv/Scripts/activate";
 }
 
 function just_venv_connect {
-  . $JUST_PROJECT_ROOT/.venv/bin/activate;
+  . "$JUST_PROJECT_ROOT/.venv/bin/activate";
 }
 
 function just_venv_disconnect {
@@ -32,15 +32,15 @@ function just_first_time_initialize_generic {
   local os="$1";
   just_venv_create;
   if [[ "$os" = "win" ]]; then
-    . $JUST_PROJECT_ROOT/.venv/Scripts/activate;
+    . "$JUST_PROJECT_ROOT/.venv/Scripts/activate";
   else
-    . $JUST_PROJECT_ROOT/.venv/bin/activate;
+    . "$JUST_PROJECT_ROOT/.venv/bin/activate";
   fi
   just_venv_install_pip_deps;
 }
 
 function just_format {
-  autopep8 "$JUST_PROJECT_ROOT" && echo "Projected Formated!" || { echo "Failed to format project!"; return 1; }
+  autopep8 "$JUST_PROJECT_ROOT";
 }
 
 function just_docker_container_start {
