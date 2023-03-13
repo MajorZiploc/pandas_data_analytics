@@ -1,4 +1,5 @@
 export JUST_PROJECT_ROOT="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+export VIRTUAL_ENV="$JUST_PROJECT_ROOT/.venv/bin/python";
 
 function just_venv_create {
   python3 -m venv "$JUST_PROJECT_ROOT/.venv";
