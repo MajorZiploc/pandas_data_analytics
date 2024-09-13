@@ -76,3 +76,7 @@ Pipfile.lock
 .ionide
 .DS_Store
 .venv
+
+tags
+
+Session.vim
