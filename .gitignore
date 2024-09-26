@@ -80,3 +80,5 @@ Pipfile.lock
 tags
 
 Session.vim
+
+cscope.out
